@@ -19,18 +19,40 @@ export default async function Home() {
   }
 
   return (
-    <main className="max-w-7xl mx-auto p-4 md:p-8 font-serif bg-[#fdfcf8] min-h-screen">
+    <main className="max-w-7xl mx-auto p-4 md:p-8 font-serif bg-[#fdfcf8] min-h-screen text-black">
       
-      {/* CABECERA ESTILO DIARIO CLÁSICO */}
-      <header className="border-b-8 border-double border-black mb-10 pb-6 text-center">
-        <div className="flex justify-between items-end mb-4 text-xs font-bold uppercase tracking-widest border-b border-gray-300 pb-2">
-          <span>Argentina, {new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
-          <span className="hidden md:block text-red-600">Edición Digital Nº 001</span>
-          <span>Precio: Suscripción</span>
+      {/* BARRA DE NAVEGACIÓN SUPERIOR (Añadida ahora) */}
+      <nav className="flex justify-between items-center py-2 border-b border-gray-200 mb-4 text-sm font-sans">
+        <div className="flex gap-4">
+          <span className="font-bold">Secciones:</span>
+          <Link href="/" className="hover:underline">Inicio</Link>
+          <Link href="/?cat=Politica" className="hover:underline">Política</Link>
+          <Link href="/?cat=Tecnologia" className="hover:underline">Tecnología</Link>
         </div>
-        <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">
-          EL INFORMANTE
-        </h1>
+        
+        {/* BOTÓN DE LOGIN */}
+        <div>
+          <Link 
+            href="/login" 
+            className="bg-black text-white px-4 py-1.5 rounded-full font-bold hover:bg-gray-800 transition-all text-xs uppercase tracking-widest"
+          >
+            Ingresar / Admin
+          </Link>
+        </div>
+      </nav>
+
+      {/* CABECERA (Modificada un poco para que encaje mejor) */}
+      <header className="border-b-8 border-double border-black mb-10 pb-6 text-center">
+        <div className="flex justify-between items-end mb-4 text-[10px] md:text-xs font-bold uppercase tracking-widest pb-2">
+          <span>{new Date().toLocaleDateString('es-AR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+          <span className="hidden md:block text-red-600">Periodismo Digital Independiente</span>
+          <span>Buenos Aires, Argentina</span>
+        </div>
+        <Link href="/">
+          <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none hover:opacity-80 transition-opacity">
+            EL INFORMANTE
+          </h1>
+        </Link>
         <p className="mt-4 text-gray-600 italic text-xl">"La verdad, sin filtros"</p>
       </header>
 
