@@ -24,9 +24,29 @@ export default function AdminNuevoPost() {
   const [uploading, setUploading] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => { if (!session) router.push('/login'); });
-  }, [router]);
+ useEffect(() => {
+   const checkAdmin = async () => {
+     const {
+       data: { session },
+     } = await supabase.auth.getSession();
+
+     if (!session) {
+       window.location.href = "/login";
+       return;
+     }
+
+     const { data: profile } = await supabase
+       .from("profiles")
+       .select("role")
+       .eq("id", session.user.id)
+       .single();
+
+     if (profile?.role !== "admin") {
+       window.location.href = "/";
+     }
+   };
+   checkAdmin();
+ }, []);
 
   const handleUploadImage = async (e: any) => {
     try {
