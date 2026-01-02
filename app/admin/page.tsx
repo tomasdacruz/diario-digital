@@ -37,7 +37,7 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-[#0f172a] text-white font-sans">
       <nav className="border-b border-slate-800 bg-[#1e293b] p-6 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto flex justify-between items-center text-xl font-black italic tracking-tighter">
-          <Link href="/">INFO ADMIN</Link>
+          <Link href="/">HABEMUS ADMIN</Link>
           <button onClick={() => supabase.auth.signOut().then(() => router.push('/'))} className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Cerrar Sesión ✕</button>
         </div>
       </nav>

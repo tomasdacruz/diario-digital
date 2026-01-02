@@ -68,7 +68,10 @@ export default function EditarPost({ params }: { params: Promise<{ id: string }>
             <select value={category} onChange={(e) => setCategory(e.target.value)} className="p-2 rounded border">
                 <option value="Politica">Política</option>
                 <option value="Economia">Economía</option>
-                <option value="Tecnologia">Tecnología</option>
+                <option value="Sociedad">Sociedad</option>
+                <option value="Deporte">Deporte</option>
+                <option value="Cultura">Cultura</option>
+                <option value="Tecnología">Tecnología</option>
             </select>
             <label className="flex items-center gap-2 font-bold">
                 <input type="checkbox" checked={isPremium} onChange={(e) => setIsPremium(e.target.checked)} />
