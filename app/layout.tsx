@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,16 +20,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="es">
+      <head>
+        {/* Cambia "tu-ID-de-publicador" por el tuyo que te da Google (ej: ca-pub-123456) */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=tu-ID-de-publicador"
+          crossOrigin="anonymous"
+          strategy="afterInteractive" // Carga el script después de que la página sea interactiva
+        />
+      </head>
+      <body className="antialiased bg-gray-100 min-h-screen">{children}</body>
     </html>
   );
 }
+
