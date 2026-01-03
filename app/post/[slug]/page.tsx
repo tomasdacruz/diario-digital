@@ -6,6 +6,24 @@ import Footer from '@/components/Footer';
 
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const { data: post } = await supabase
+    .from("posts")
+    .select("title")
+    .eq("slug", slug)
+    .single();
+
+  return {
+    title: post ? `${post.title} | Habemus Info` : "Cargando noticia...",
+  };
+}
+
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { data: post } = await supabase
